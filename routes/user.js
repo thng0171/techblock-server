@@ -29,7 +29,7 @@ router.put("/bookmark/:id", verifyToken, removeArticle);
 router.put("/:id", verifyToken, verifyUser, updateUser);
 //change password
 router.put("/change-password/:id", verifyToken, verifyUser, changePassword);
-//Delete
-router.delete("/:id", verifyToken, verifyUser, deleteUser);
+//Delete user
+router.post("/delete/:id", verifyToken, verifyUser, deleteUser);
 
 module.exports = router;

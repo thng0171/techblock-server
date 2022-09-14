@@ -6,7 +6,7 @@ const fs = require("fs");
 
 const createArticle = async (req, res) => {
   const { title, author, content, coverImage, category } = req.body;
-  if (!title || !author || !content || !category || !coverImage) {
+  if (!title  || !content || !category || !coverImage) {
     return res
       .status(400)
       .json({ success: false, message: "Vui lòng nhập đầy đủ nội dung" });
@@ -61,7 +61,7 @@ const getArticleBySlug = async (req, res) => {
   try {
     const article = await Article.findOneAndUpdate(
       { slug: req.params.slug },
-      { $inc: { views: 1 } },
+      { $inc: { views: 1 } },    
       { new: true }
     );
     //return
@@ -125,6 +125,7 @@ const searchArticles = async (req, res) => {
 const getTopArticles = async (req, res) => {
   try {
     // find article with most views in last 48 hours
+    // console.log(req.query)
     const day = req.query.day || 1;
     const articles = await Article.find({
       createdAt: {
@@ -150,8 +151,12 @@ const getTopArticles = async (req, res) => {
 };
 const updateArticle = async (req, res) => {
   try {
-    const { title, author, content, coverImage, category, oldCoverImage } =
-      req.body;
+    const { title, author, content, coverImage, category, oldCoverImage } = req.body;
+    // console.log(author)
+    // console.log(req.user._id)
+    // if(author.tostring() !== req.user._id.toString()){
+    //   return res.status(404).json({success: false, message: "Không có quyên chỉnh sửa"})
+    // }
     if (!title || !author || !content || !category || !coverImage) {
       return res
         .status(400)
@@ -169,6 +174,7 @@ const updateArticle = async (req, res) => {
     }
     //  generate new slug
     const slug = slugify(title, { lower: true, locale: "vi", strict: true });
+
     let updatedArticle = await Article.findByIdAndUpdate(
       req.params.id,
       {

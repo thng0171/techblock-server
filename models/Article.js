@@ -23,6 +23,7 @@ const articleSchema = new Schema(
     category: {
       type: String,
       required: [true, "Category is required"],
+      //  Change to ObjectId
     },
     views: {
       type: Number,

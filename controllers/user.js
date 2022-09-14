@@ -27,6 +27,7 @@ const getUsersCount = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-password");
+    // console.log(user);
     if (!user) {
       return res.status(404).json({
         success: false,
@@ -131,7 +132,36 @@ const changePassword = async (req, res) => {
 };
 const deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete(req.params.id);
+    // console.log(req.body.password)
+    const user = await User.findById(req.params.id);
+    //if user req delete acc check password
+    if (req.body.password) {
+      const user = await User.findById(req.user._id);
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "User not found",
+        });
+      }
+      const isMatch = await argon2.verify(user.password, req.body.password);
+      if (!isMatch) {
+        return res.status(400).json({
+          success: false,
+          message:
+            "Mật khẩu của bạn không đúng. Vui lòng kiểm tra lại mật khẩu.",
+        });
+      }
+    }
+    // If user have profilePicture delete
+    if (user.profilePicture) {
+      fs.unlink(`./uploads/${user.profilePicture}`, (err) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).json(err);
+        }
+      });
+    }
+    await user.remove();
     res.status(200).json({ success: true, message: "Đã xoá người dùng" });
   } catch (err) {
     res.status(500).json(err);

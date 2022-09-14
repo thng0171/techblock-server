@@ -97,11 +97,13 @@ const deleteComment = async (req, res) => {
     //check if comment belongs to user
     // console.log(comment.user.toString());
     // console.log(req.user._id.toString());
-    if (comment.user.toString() !== req.user._id.toString()) {
-      return res.status(401).json({
-        success: false,
-        message: "You are not authorized to delete this comment",
-      });
+    if (req.user?.role !== "admin") {
+      if (comment.user.toString() !== req.user._id.toString()) {
+        return res.status(401).json({
+          success: false,
+          message: "You are not authorized to delete this comment",
+        });
+      }
     }
     if (!comment) {
       return res.status(404).json({

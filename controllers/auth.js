@@ -5,9 +5,7 @@ require("dotenv").config();
 
 // generate token function
 const generateToken = (userId, userRole) => {
-  return jwt.sign({ id: userId, role: userRole }, process.env.JWT_SECRET, {
-    expiresIn: "7d",
-  });
+  return jwt.sign({ id: userId, role: userRole }, process.env.JWT_SECRET);
 };
 
 const registerUser = async (req, res) => {
@@ -41,7 +39,7 @@ const registerUser = async (req, res) => {
     const newUser = new User({
       username,
       password: HashPassword,
-      fullname,
+      fullname,   
       email,
       role: "user",
     });
@@ -105,7 +103,7 @@ const registerAdmin = async (req, res) => {
 const login = async (req, res) => {
   try {
     // Check if user exists
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username: req.body.username }).select('_id password role')
     if (!user) {
       return res.status(400).json({
         param: "username",
@@ -159,7 +157,7 @@ const loginAdmin = async (req, res) => {
       return res.status(400).json({
         param: "role",
         success: false,
-        message: "Bạn không có quyền đăng nhập",
+        message: "Bạn không có quyền truy cập trang quản trị",
       });
     }
     // return userData and Token

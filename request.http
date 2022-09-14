@@ -136,7 +136,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWZkMzdkZ
 
 ### GET ALL Comment by(userID, artilceID): OK
 GET http://localhost:5000/api/comment
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDgyMzFlMjY4ZGE1NTRkZjQ2OWVhMCIsImlhdCI6MTY1OTExOTg4OCwiZXhwIjoxNjU5NzI0Njg4fQ.FH7buIItVbYxppfCGufbNGKfNpW6xGewv119ELGHuEA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWZkMzdkZDAyOWJjZDA3YjEwY2Q1YiIsImlhdCI6MTY2MTQ0ODU2NSwiZXhwIjoxNjYyMDUzMzY1fQ.VuANv9-UtA4hBDbko-ZxloIiJ8lFnxfBijt0CMV_Gpg
 
 # Content-Type: application/json
 # ### Get comment by articleId : OK
@@ -152,8 +152,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2E3OGIxN
 }
 
 ### Delete comment: OK
-DELETE http://localhost:5000/api/comment/62e4d84ceaa94d01449aad7f
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2E3OGIxNTdmMWJjMGQ1ZmM2YzY1ZSIsImlhdCI6MTY1OTE2NDU3NCwiZXhwIjoxNjU5NzY5Mzc0fQ.drxsNQhKMUD6AdPE6QS954oYPL5Ia0loTd0II5Yv72Q
+DELETE http://localhost:5000/api/comment/630128e9337f0fef218f9bb2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZWZkMzdkZDAyOWJjZDA3YjEwY2Q1YiIsImlhdCI6MTY2MTQ0ODU2NSwiZXhwIjoxNjYyMDUzMzY1fQ.VuANv9-UtA4hBDbko-ZxloIiJ8lFnxfBijt0CMV_Gpg
 
 # <========= USER ===========>
 ### Get all users: OK

@@ -22,7 +22,7 @@ router.get("/count", verifyToken, verifyUser, getCommentsCount);
 router.get("/:id", getCommentByArticle);
 
 //update comment
-router.put("/:id", verifyToken, updateComment);
+router.put("/:id", verifyToken, verifyUser, updateComment);
 
 //delete comment
 router.delete("/:id", verifyToken, deleteComment);
