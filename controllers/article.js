@@ -204,7 +204,7 @@ const updateArticle = async (req, res) => {
 };
 
 const deleteArticle = async (req, res) => {
-  // delêt article by id and delete all comments, files related to article
+  // delete article by id and delete all comments, files related to article
   try {
     const article = await Article.findById(req.params.id);
     if (!article) {

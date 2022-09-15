@@ -74,6 +74,6 @@ router.get("/id/:id", getArticleById);
 router.put("/:id", verifyToken, verifyUser, updateArticle);
 
 //Delete article by id
-router.delete("/:id", verifyToken, verifyUser, deleteArticle);
+router.post("/:id", verifyToken, verifyUser, deleteArticle);
 
 module.exports = router;
