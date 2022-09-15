@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name   : "app1",
+    name   : "app",
     script : "./index.js",
     watch: ["server", "client"],
     watch_delay: 1000,
